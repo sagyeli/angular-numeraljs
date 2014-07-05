@@ -11,9 +11,9 @@ angular.module('ngNumeraljs', [])
             var nums = numeral(input).format(format).split('.');
             nums[0] = '<span class="numeral-left">' + nums[0] + '</span>';
             if (nums.length > 1) {
-            	nums[1] = '<span class="numeral-right">' + nums[1] + '</span>';
+            	nums[1] = '<span class="numeral-right">.' + nums[1] + '</span>';
             }
 
-            return $sce.trustAsHtml(nums.join('.'));
+            return $sce.trustAsHtml(nums.join(''));
         };
     }]);
