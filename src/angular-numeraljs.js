@@ -16,7 +16,15 @@ angular.module('ngNumeraljs', [])
             }
             nums = nums.split('.');
 
-            if (noZerosTrimming || (nums.length > 1 && parseInt(nums[1].replace('/\D/g', '')) > 0)) {
+            if (nums[1] && format.indexOf('.') >= 0 && nums[1].replace(/\D/g, '') === '') {
+                nums[1] = '0' + nums[1];
+            }
+
+            if (noZerosTrimming || (nums.length > 1 && parseInt(nums[1].replace(/\D/g, '')) > 0)) {
+		if (nums[1].replace('/\D/g', '') === '') {
+			nums[1] = '0' + nums[1];
+		}
+
                 nums[0] = '<span class="numeral-left">' + nums[0] + '</span>';
             	nums[1] = '<span class="numeral-right">.' + nums[1] + '</span>';
             }
